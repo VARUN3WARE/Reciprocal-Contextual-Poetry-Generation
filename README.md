@@ -28,6 +28,10 @@ The highest-rated line is selected and added to the poem, becoming part of the c
 
 This feedback (line, rating) is stored. At the end of the session, it's used to update the DistilBERT (Reward Model), which gets better at predicting the user's preferences for the next session.
 
+## Link for the Fine-Tuned Model
+
+https://drive.google.com/file/d/1IvTbqQ4dJ4dUDVrFT0A0Y2i1BCnsdGu0/view?usp=drive_link
+
 
 
 ## Technology Stack
