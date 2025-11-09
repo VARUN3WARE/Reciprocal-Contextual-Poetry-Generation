@@ -45,7 +45,7 @@ def train_reward_model(reward_model: RewardModel, embeddings: np.ndarray, rating
     return reward_model
 
 
-def finetune_gpt2_supervised(model, tokenizer, texts: List[str], device, epochs: int = 1, lr: float = 5e-5, batch_size: int = 4, gradient_accumulation_steps: int = 1):
+def finetune_gpt2_supervised(model, tokenizer, texts: List[str], device, epochs: int = 1, lr: float = 5e-5, batch_size: int = 4, gradient_accumulation_steps: int = 1, gradient_checkpointing: bool = False, use_bf16: bool = False):
     """Simple supervised fine-tune of GPT-2 on positive texts as an RLHF proxy.
 
     This is intentionally small-scale and fast; it uses causal LM loss and
@@ -61,8 +61,12 @@ def finetune_gpt2_supervised(model, tokenizer, texts: List[str], device, epochs:
         pass
 
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr)
+    # Choose AMP dtype: use bfloat16 on H100 if requested, otherwise fp16 when CUDA available
     use_amp = (device.type == 'cuda') and hasattr(torch.cuda, 'amp')
-    scaler = torch.cuda.amp.GradScaler() if use_amp else None
+    use_bf16 = use_bf16 and (device.type == 'cuda')
+    scaler = None
+    if use_amp and not use_bf16:
+        scaler = torch.cuda.amp.GradScaler()
 
     # Tokenize with truncation to model max length to avoid OOM on long lines
     max_len = getattr(tokenizer, 'model_max_length', 1024)
@@ -70,6 +74,13 @@ def finetune_gpt2_supervised(model, tokenizer, texts: List[str], device, epochs:
     inputs = [torch.tensor(t, dtype=torch.long) for t in tokenized]
 
     dataset = inputs
+    # enable gradient checkpointing if requested (saves memory at cost of compute)
+    if gradient_checkpointing and hasattr(model, 'gradient_checkpointing_enable'):
+        try:
+            model.gradient_checkpointing_enable()
+        except Exception:
+            pass
+
     for epoch in range(epochs):
         for i in range(0, len(dataset), batch_size):
             batch = dataset[i : i + batch_size]
@@ -83,10 +94,16 @@ def finetune_gpt2_supervised(model, tokenizer, texts: List[str], device, epochs:
             input_ids = input_ids.to(device)
             attention_mask = attention_mask.to(device)
 
+            # Use autocast with requested dtype
             if use_amp:
-                with torch.cuda.amp.autocast():
-                    outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
-                    loss = outputs.loss
+                if use_bf16:
+                    with torch.cuda.amp.autocast(device_type='cuda', dtype=torch.bfloat16):
+                        outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
+                        loss = outputs.loss
+                else:
+                    with torch.cuda.amp.autocast():
+                        outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
+                        loss = outputs.loss
             else:
                 outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
                 loss = outputs.loss

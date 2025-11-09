@@ -36,6 +36,8 @@ def run():
     parser.add_argument('--num-prompts', type=int, default=30, help='Number of prompts to sample from dataset')
     parser.add_argument('--quick', action='store_true', help='Quick mode: use fewer prompts and shorter max_length')
     parser.add_argument('--out', type=str, default=None, help='Output results file (JSON)')
+    parser.add_argument('--device', type=str, default='cuda' if torch.cuda.is_available() else 'cpu', help='Torch device to use')
+    parser.add_argument('--model-dir', type=str, default=None, help='Optional path to a local finetuned model directory')
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -44,8 +46,8 @@ def run():
         print('poetry_dataset.txt not found in repo root. Please add dataset.')
         return
 
-    # Set device
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # Set device (allow override from CLI)
+    device = torch.device(args.device if args.device is not None else ('cuda' if torch.cuda.is_available() else 'cpu'))
     print('Using device:', device)
 
     # Set seeds if provided
@@ -63,7 +65,18 @@ def run():
     # Prefer a locally finetuned model if available (distil or full GPT-2)
     distil_model_dir = repo_root / 'models' / 'distilgpt2_poetry_small'
     local_model_dir = repo_root / 'models' / 'gpt2_poetry_small'
-    if distil_model_dir.exists():
+    # If user specified a model-dir, prefer that
+    if args.model_dir:
+        md = Path(args.model_dir)
+        if md.exists():
+            print('Loading model from provided --model-dir at', md)
+            gpt2 = GPT2LMHeadModel.from_pretrained(str(md))
+            tokenizer = GPT2Tokenizer.from_pretrained(str(md))
+        else:
+            print('Provided --model-dir does not exist, falling back to defaults')
+            gpt2 = GPT2LMHeadModel.from_pretrained('gpt2')
+            tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+    elif distil_model_dir.exists():
         print('Found finetuned DistilGPT2 at', distil_model_dir, '- loading')
         gpt2 = GPT2LMHeadModel.from_pretrained(str(distil_model_dir))
         tokenizer = GPT2Tokenizer.from_pretrained(str(distil_model_dir))

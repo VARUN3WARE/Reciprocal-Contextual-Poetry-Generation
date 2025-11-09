@@ -55,14 +55,21 @@ class HybridPoetryGenerator:
     def _generate_standard(self, model, prompt: str, max_length: int):
         model.eval()
         with torch.no_grad():
-            input_ids = self.tokenizer.encode(prompt, return_tensors='pt')
+            # Truncate prompt so that generation length does not exceed model's max length
+            max_model_len = getattr(self.tokenizer, 'model_max_length', 1024)
+            # reserve `max_length` tokens for generation
+            max_input_len = max(1, max_model_len - int(max_length) - 1)
+            input_ids = self.tokenizer.encode(prompt, return_tensors='pt', max_length=max_input_len, truncation=True)
             # Put inputs on the same device as the model to avoid device mismatch
             try:
                 model_device = next(model.parameters()).device
             except StopIteration:
                 model_device = self.device
             input_ids = input_ids.to(model_device)
-            output = model.generate(input_ids, max_length=input_ids.shape[1] + max_length, do_sample=True, top_k=50, temperature=0.9, pad_token_id=self.tokenizer.eos_token_id)
+            # compute generation max length safely
+            gen_max = int(min(input_ids.shape[1] + max_length, max_model_len))
+            attention_mask = torch.ones_like(input_ids).to(model_device)
+            output = model.generate(input_ids, attention_mask=attention_mask, max_length=gen_max, do_sample=True, top_k=50, temperature=0.9, pad_token_id=self.tokenizer.eos_token_id)
             text = self.tokenizer.decode(output[0], skip_special_tokens=True)
         return text
 
