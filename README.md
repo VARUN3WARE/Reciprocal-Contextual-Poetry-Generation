@@ -1,3 +1,46 @@
+# Reciprocal Contextual Poetry Generation
+
+This repository contains a minimal, structured implementation of PPLM + a simplified RLHF proxy adapted from the notebooks in this workspace. The goal is to provide a reproducible experiment harness that:
+
+- Implements a simplified PPLM steering using BoW attribute models.
+- Implements a lightweight RLHF proxy: a reward model + small supervised fine-tune on preferred examples.
+- Runs experiments comparing Base, PPLM, RLHF, and Hybrid approaches and computes simple quantitative metrics.
+
+Structure
+
+- `src/` : core modules (pplm, rlhf, generator, eval)
+- `scripts/` : experiment runner
+- `poetry_dataset.txt` : dataset (should be present in repo root)
+- `outputs/experiments/results.json` : saved experiment outputs
+
+Quick start
+
+1. Create a Python environment and install dependencies:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+2. Run the experiment runner (may download models the first time):
+
+```bash
+python scripts/run_experiments.py
+```
+
+Notes
+
+- The RLHF implementation here is a small-scale proxy for demonstration (supervised fine-tuning on high-rated examples). Full RLHF (PPO) would need a larger training loop and compute.
+- PPLM is implemented in a simplified manner for clarity and reproducibility.
+- The scripts are intentionally conservative so they can run on CPU for quick tests. For larger experiments use a GPU.
+
+Next steps
+
+- Add unit tests and CI integration.
+- Add more robust RLHF (PPO via trl) and batched PPLM for speed.
+- Add plotting notebooks to visualize reward evolution and comparisons.
+
 ## Reciprocal Poetry: An AI Co-Creative Writing Partner ✍
 
 ️
@@ -31,14 +74,13 @@ The highest-rated line is selected and added to the poem, becoming part of the c
 
 This feedback (line, rating) is stored. At the end of the session, it's used to update the DistilBERT (Reward Model), which gets better at predicting the user's preferences for the next session.
 
-## Link for the RHLF Model 
-https://colab.research.google.com/drive/1aAb4D4u8u5mkvTkQG_aV_6AMwSvMyoVf#scrollTo=lDVJeRDLeoH_
+## Link for the RHLF Model
 
+https://colab.research.google.com/drive/1aAb4D4u8u5mkvTkQG_aV_6AMwSvMyoVf#scrollTo=lDVJeRDLeoH_
 
 ## Link for the Fine-Tuned Model
 
 https://drive.google.com/file/d/1IvTbqQ4dJ4dUDVrFT0A0Y2i1BCnsdGu0/view?usp=drive_link
-
 
 ## DATASET (NEW)
 
