@@ -1,8 +1,8 @@
 venv/
 .venv/
 __pycache__/
-outputs/
+# outputs/
 models/
-*.pt
-*.pth
+# *.pt
+# *.pth
 *.ipynb_checkpoints

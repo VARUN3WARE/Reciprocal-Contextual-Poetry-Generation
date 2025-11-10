@@ -1,0 +1,72 @@
+{
+  "runs": [
+    {
+      "config": "Base",
+      "metrics": {
+        "method": "Base",
+        "avg_reward": -0.12809021770954132,
+        "perplexity": 35.63139967647751,
+        "distinct_2": 0.9689922480620154,
+        "distinct_3": 1.0
+      },
+      "examples": [
+        "Katherine O'Connell\n\nIn December 2012, the Supreme Court ruled in Mather v.",
+        "While the light of day does cease, still outside many trees are blossoming in the serene beauty of this early spring but nature at this twilight has some peace before the time of danger does increase when nightly predators take to their wing there is activity in the smallest nocturnal thing, that hunts and feed and breeds with ease as life comes to greatness in large and small as every living thing is in a way special in this time of new birth and change and it's as if the blessings of God fall on all and even in things superficial the entire world His hand does rearrange.\n\nWhat a beautiful scene it is. The scene is always such a beauty that when you see",
+        "A wind sways the pines, And below Not a breath of wild air; Still as the mosses that glow On the flooring and over the lines Of the roots here and there. The pine-tree drops its dead; They are quiet, as under the sea. Overhead, overhead Rushes life in a race, As the clouds the clouds chase; And we go, And we drop like the fruits of the tree, Even we, Even so. Down, down from high above, into a high morn Of moss that covers our earth, And",
+        "As a teacher in a school for children of the LGBT community at UVA, I could not have",
+        "There are two possibilities that could make perfect sense. One possibility is that the players in the team that"
+      ]
+    },
+    {
+      "config": "RLHF",
+      "metrics": {
+        "method": "RLHF",
+        "avg_reward": -0.12803487479686737,
+        "perplexity": 26.363136661551994,
+        "distinct_2": 0.953307392996109,
+        "distinct_3": 0.996031746031746
+      },
+      "examples": [
+        "Jorge Silva, also known as \"the Spider-Man\" (in the comics), is not",
+        "While the light of day does cease, still outside many trees are blossoming in the serene beauty of this early spring but nature at this twilight has some peace before the time of danger does increase when nightly predators take to their wing there is activity in the smallest nocturnal thing, that hunts and feed and breeds with ease as life comes to greatness in large and small as every living thing is in a way special in this time of new birth and change and it's as if the blessings of God fall on all and even in things superficial the entire world His hand does rearrange. This is a very beautiful day and we are glad to see the sun coming up from the horizon on",
+        "A wind sways the pines, And below Not a breath of wild air; Still as the mosses that glow On the flooring and over the lines Of the roots here and there. The pine-tree drops its dead; They are quiet, as under the sea. Overhead, overhead Rushes life in a race, As the clouds the clouds chase; And we go, And we drop like the fruits of the tree, Even we, Even so. When the wind sways, As the pines that light On the feet of the tree, And",
+        "\nOne of the things that makes a big difference in your life and your life is being able to",
+        "\"I'm sorry we won't be able to hear the next president,\" she said. \"If"
+      ]
+    },
+    {
+      "config": "PPLM",
+      "metrics": {
+        "method": "PPLM",
+        "avg_reward": -0.1282322108745575,
+        "perplexity": 18.35159119334664,
+        "distinct_2": 0.9437751004016064,
+        "distinct_3": 0.9836065573770492
+      },
+      "examples": [
+        ".\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n",
+        "While the light of day does cease, still outside many trees are blossoming in the serene beauty of this early spring but nature at this twilight has some peace before the time of danger does increase when nightly predators take to their wing there is activity in the smallest nocturnal thing, that hunts and feed and breeds with ease as life comes to greatness in large and small as every living thing is in a way special in this time of new birth and change and it's as if the blessings of God fall on all and even in things superficial the entire world His hand does rearrange.\n\nThe life of this country is not to be disturbed and that is true but as a matter",
+        "A wind sways the pines, And below Not a breath of wild air; Still as the mosses that glow On the flooring and over the lines Of the roots here and there. The pine-tree drops its dead; They are quiet, as under the sea. Overhead, overhead Rushes life in a race, As the clouds the clouds chase; And we go, And we drop like the fruits of the tree, Even we, Even so. As the trees drop on the ground, And you see They are the trees, And they shine,",
+        "The National Endowment for the Arts, which has been called \"one of the world's leading social",
+        "If you have experienced that scenario, please share this story.\n\nHollywood is home to one"
+      ]
+    },
+    {
+      "config": "Hybrid",
+      "metrics": {
+        "method": "Hybrid",
+        "avg_reward": -0.12865352630615234,
+        "perplexity": 37.14284752687067,
+        "distinct_2": 0.972972972972973,
+        "distinct_3": 0.9960629921259843
+      },
+      "examples": [
+        "The first official development from a Nintendo eShop event that has arrived at E3 is the Zelda:",
+        "While the light of day does cease, still outside many trees are blossoming in the serene beauty of this early spring but nature at this twilight has some peace before the time of danger does increase when nightly predators take to their wing there is activity in the smallest nocturnal thing, that hunts and feed and breeds with ease as life comes to greatness in large and small as every living thing is in a way special in this time of new birth and change and it's as if the blessings of God fall on all and even in things superficial the entire world His hand does rearrange. Our eyes, the heart and the hair we carry are all for God and His angels in our eyes",
+        "A wind sways the pines, And below Not a breath of wild air; Still as the mosses that glow On the flooring and over the lines Of the roots here and there. The pine-tree drops its dead; They are quiet, as under the sea. Overhead, overhead Rushes life in a race, As the clouds the clouds chase; And we go, And we drop like the fruits of the tree, Even we, Even so. But where do we go, And where to find us?\n\n\nI am not like you;",
+        "On May 29th, 2017 we had the opportunity of speaking with the founders, executive producers and producers",
+        "\nThe Senate on Thursday approved the so-called \"nuclear option\" \u2014 a nuclear power deal in"
+      ]
+    }
+  ]
+}

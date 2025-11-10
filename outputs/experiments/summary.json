@@ -1,0 +1,10 @@
+{
+  "best_method": "Hybrid",
+  "metrics": {
+    "config": "Hybrid",
+    "avg_reward": -0.15216071903705597,
+    "perplexity": 9.117357337676959,
+    "distinct_2": 0.9615384615384616,
+    "distinct_3": 0.9787234042553191
+  }
+}

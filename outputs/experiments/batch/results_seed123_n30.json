@@ -1,0 +1,72 @@
+{
+  "runs": [
+    {
+      "config": "Base",
+      "metrics": {
+        "method": "Base",
+        "avg_reward": -0.15269918739795685,
+        "perplexity": 17.96980254651539,
+        "distinct_2": 0.9852941176470589,
+        "distinct_3": 1.0
+      },
+      "examples": [
+        "\nThe National Football League is looking to add nine more NFL teams to its current expansion proposal. The",
+        "Eminem's return to the limelight comes after a lengthy hiatus, and it was rumoured",
+        "1,000,000 dollars in damages\n\n50000 hours of work and 1,500,",
+        "Beside the whiteboard was two pieces of paper: a copy of the law, a copy",
+        "Vikings running back Pierre Thomas is a free agent after two seasons with the Vikings. (K"
+      ]
+    },
+    {
+      "config": "RLHF",
+      "metrics": {
+        "method": "RLHF",
+        "avg_reward": -0.15269587934017181,
+        "perplexity": 14.580822613835071,
+        "distinct_2": 1.0,
+        "distinct_3": 1.0
+      },
+      "examples": [
+        "In the past few years, we've heard tales of our nation not doing enough to address this issue",
+        "\nSINGAPORE (Reuters) - A man who lost his life in an explosion in a",
+        "\"You need to have a pretty decent time\" is his last line, followed by, \"I",
+        "It makes me sad to say this, but my dear friend and fellow reader, I don't know",
+        "One year after the company's founder died at his home in Vancouver, the country's largest retailer has"
+      ]
+    },
+    {
+      "config": "PPLM",
+      "metrics": {
+        "method": "PPLM",
+        "avg_reward": -0.15271131694316864,
+        "perplexity": 18.3239673844662,
+        "distinct_2": 1.0,
+        "distinct_3": 1.0
+      },
+      "examples": [
+        "\nIn the wake of the shooting in Nice yesterday, the news media and some pro-ISIS propag",
+        "WALLACE \u2014 There was talk of bringing the city's new transit system to downtown from a streetcar",
+        "FULL STORY WITH SEPTEMBER 02, 2015\n\nThe following article has been updated with new",
+        ": A large body of evidence, including data collected from more than 1,000 patients, has emerged",
+        "Dietary cholesterol\n\n(mg/dL)\n\n(mg/dL)\n\n"
+      ]
+    },
+    {
+      "config": "Hybrid",
+      "metrics": {
+        "method": "Hybrid",
+        "avg_reward": -0.15216071903705597,
+        "perplexity": 9.117357337676959,
+        "distinct_2": 0.9615384615384616,
+        "distinct_3": 0.9787234042553191
+      },
+      "examples": [
+        "On March 14, 2017, the U.S. House passed legislation that passed unanimously and is expected",
+        "2\n\n3\n\n4\n\n5,001\n\n6,499\n\n7",
+        "A few weeks ago, I was talking to people from my university about the new video game called World",
+        "4.2.2-1\n\nBug Fixes\n\n\nThank you to everyone involved in this",
+        "1-8 1-8 4-0 4-0 4-0 4-0 4-"
+      ]
+    }
+  ]
+}

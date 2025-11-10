@@ -1,0 +1,72 @@
+{
+  "runs": [
+    {
+      "config": "Base",
+      "metrics": {
+        "method": "Base",
+        "avg_reward": -0.048734407871961594,
+        "perplexity": 84.27649999445563,
+        "distinct_2": 0.9717314487632509,
+        "distinct_3": 0.9964028776978417
+      },
+      "examples": [
+        "Ricardo Hines / LA Post-Standard\n\nLos Angeles Mayor Eric Garcetti has confirmed",
+        "I am desperately searching an image Of what I feel To make you understand Inside of me which runs wild I close my eyes Switch on the power of imagination But no image I get The wish I hold for you Neither have I got any object To compare my delight When I see Your hanging portrait Things go abstract No vehicle, no tenor I get To say something On beauty you posses. I am trying to understand what I think That feels Like I am seeing The world But a stranger is",
+        "Timeless, Appealing, Imagery, Personal, Experiences, Love, The language of the soul! Sweetest joy, Memories, Soulmate, Classmate, Mate, Country life, Village life, The birth of a child, The ways of things, Education, Work, Properties, The muse of life! ! And, like the things that i go through to become a person. . But the words mean more to my soul than it does to my soul. I am to come",
+        "they have cut every tree ..... ............ some straws of nests ..... ................ and torn feathers are lying Copyright Muzahidul Reza 17 February,2018, in Abu Dhabi (Al-Jazeera) [Updated 25 February 2018]\n\nI don",
+        "(Ode To March, The Month Of Independence - An Horatian Ode) March, again you have come Holding the history from 1971, To remind the oblivious generation How our ancestors fought then Against oppressors, occupationists Armed, fully cruel massacrers Massacred lots of common mass, Dishonored woman folks a lots, Destroyed innumerable properties, So every year you come to see us, March. Copyright Muzahidul Reza 22 March,2018. All Rights Reserved. This may not be reprinted in full, or redistributed. Please read this carefully"
+      ]
+    },
+    {
+      "config": "RLHF",
+      "metrics": {
+        "method": "RLHF",
+        "avg_reward": -0.04986708611249924,
+        "perplexity": 91.734591807874,
+        "distinct_2": 0.9581881533101045,
+        "distinct_3": 0.9822695035460993
+      },
+      "examples": [
+        "There is no longer a need for any more data, so we have a big idea on where you",
+        "I am desperately searching an image Of what I feel To make you understand Inside of me which runs wild I close my eyes Switch on the power of imagination But no image I get The wish I hold for you Neither have I got any object To compare my delight When I see Your hanging portrait Things go abstract No vehicle, no tenor I get To say something On beauty you posses. I have always held a dream, And I have always looked for the future I have always held a",
+        "Timeless, Appealing, Imagery, Personal, Experiences, Love, The language of the soul! Sweetest joy, Memories, Soulmate, Classmate, Mate, Country life, Village life, The birth of a child, The ways of things, Education, Work, Properties, The muse of life! ! And, like the things that i go through to become a person. I am the soul, and I say to myself, \"Why do i come here?\" Or,",
+        "they have cut every tree ..... ............ some straws of nests ..... ................ and torn feathers are lying Copyright Muzahidul Reza 17 February,2018\n\n[Mukh\u0101] This website and the related sites contain information about illegal fishing.",
+        "(Ode To March, The Month Of Independence - An Horatian Ode) March, again you have come Holding the history from 1971, To remind the oblivious generation How our ancestors fought then Against oppressors, occupationists Armed, fully cruel massacrers Massacred lots of common mass, Dishonored woman folks a lots, Destroyed innumerable properties, So every year you come to see us, March. Copyright Muzahidul Reza 22 March,2018: This is still happening. This is the most important, the most important month of our lifetimes"
+      ]
+    },
+    {
+      "config": "PPLM",
+      "metrics": {
+        "method": "PPLM",
+        "avg_reward": -0.049066103994846344,
+        "perplexity": 94.93784533345163,
+        "distinct_2": 0.9625468164794008,
+        "distinct_3": 0.9923664122137404
+      },
+      "examples": [
+        ".\n\n.\n\n\n.",
+        "I am desperately searching an image Of what I feel To make you understand Inside of me which runs wild I close my eyes Switch on the power of imagination But no image I get The wish I hold for you Neither have I got any object To compare my delight When I see Your hanging portrait Things go abstract No vehicle, no tenor I get To say something On beauty you posses. But in the meantime I'm at rest, If you think I'm here I may be Here,",
+        "Timeless, Appealing, Imagery, Personal, Experiences, Love, The language of the soul! Sweetest joy, Memories, Soulmate, Classmate, Mate, Country life, Village life, The birth of a child, The ways of things, Education, Work, Properties, The muse of life! ! And, like the things that i go through to become a person. For example, my love and admiration of the flower of love, the flower of delight. For me",
+        "they have cut every tree ..... ............ some straws of nests ..... ................ and torn feathers are lying Copyright Muzahidul Reza 17 February,2018\n\n\nTUVAL KHANNAI\n\nKhorr -\n\nA man wearing",
+        "(Ode To March, The Month Of Independence - An Horatian Ode) March, again you have come Holding the history from 1971, To remind the oblivious generation How our ancestors fought then Against oppressors, occupationists Armed, fully cruel massacrers Massacred lots of common mass, Dishonored woman folks a lots, Destroyed innumerable properties, So every year you come to see us, March. Copyright Muzahidul Reza 22 March,2018, I am trying to understand the history of the Islamic movement as we know it, To understand that"
+      ]
+    },
+    {
+      "config": "Hybrid",
+      "metrics": {
+        "method": "Hybrid",
+        "avg_reward": -0.04887705296278,
+        "perplexity": 85.71989107540524,
+        "distinct_2": 0.9829351535836177,
+        "distinct_3": 0.9930555555555556
+      },
+      "examples": [
+        "I didn't think that, then I thought about it again: this is the moment when I think",
+        "I am desperately searching an image Of what I feel To make you understand Inside of me which runs wild I close my eyes Switch on the power of imagination But no image I get The wish I hold for you Neither have I got any object To compare my delight When I see Your hanging portrait Things go abstract No vehicle, no tenor I get To say something On beauty you posses. In your eyes. But not on my face I never see your face. Nothing in my mouth I",
+        "Timeless, Appealing, Imagery, Personal, Experiences, Love, The language of the soul! Sweetest joy, Memories, Soulmate, Classmate, Mate, Country life, Village life, The birth of a child, The ways of things, Education, Work, Properties, The muse of life! ! And, like the things that i go through to become a person. This is an intense art, as if it were a painting; for i have seen it in the",
+        "they have cut every tree ..... ............ some straws of nests ..... ................ and torn feathers are lying Copyright Muzahidul Reza 17 February,2018\n\nWe have been able to get help from people from Turkey and Iraq who had this experience.",
+        "(Ode To March, The Month Of Independence - An Horatian Ode) March, again you have come Holding the history from 1971, To remind the oblivious generation How our ancestors fought then Against oppressors, occupationists Armed, fully cruel massacrers Massacred lots of common mass, Dishonored woman folks a lots, Destroyed innumerable properties, So every year you come to see us, March. Copyright Muzahidul Reza 22 March,2018 Ode To December 1, 2012, To remind the ignorant generation the true history was during the late"
+      ]
+    }
+  ]
+}

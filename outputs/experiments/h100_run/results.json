@@ -1,0 +1,72 @@
+{
+  "runs": [
+    {
+      "config": "Base",
+      "metrics": {
+        "method": "Base",
+        "avg_reward": -0.052631087601184845,
+        "perplexity": 36.955548338833545,
+        "distinct_2": 0.8019031596656327,
+        "distinct_3": 0.918538880372152
+      },
+      "examples": [
+        "Maybe we couldn't understand the meaning of our love or so, Maybe we couldn't find each other in our world of two and Love itself ceased to be, 'cause it had no sense to glow. Love made sense for both of us, but we didn't let it flow, Though we could let it flow, but we didn't give it a chance, and Maybe we couldn't understand the meaning of our love or so. Maybe the senses of our love were intermingled and we didn't know, But we knew it, when we touched our angry bodies, we knew that Love itself ceased to be, 'cause it had no sense to glow. Then, we letted our love madness be a big bubble growin' to blow, That kind of madness making us be drinkers of our own delusions, and Maybe we couldn't understand the meaning of our love or so. We understood the dyin' meaning of those delusions in our live show. They have been dissolved into sorrow until our separation, and Love itself ceased to be, 'cause it had no sense to glow. Now, when we drive with time machine on the old age o' the snow, 'Tis too late to search each other in our world of two, and Maybe we couldn't understand the meaning of our love or so, Love itself ceased to be, 'cause it had no sense to glow. Now, when we drive with time machine on the old age o' the snow, 'Tis too late to search each other in our world of",
+        "",
+        "To the Almighty Creator we believe with faith To Him we pray to merit us the better fate But if a strong, healthy person such so lazy Relies only from somebody to feed him if hungry To starvation if that person dies, that's total defeat And that's not Almighty Creator's given fate For that he is a human being with rights Copyright Muzahidul Reza | 11 November,2017",
+        "Nude men and women come to see the Eyes of God, and they are baptized. Poem by Marieta Maglas - 18 November,2015",
+        ""
+      ]
+    },
+    {
+      "config": "RLHF",
+      "metrics": {
+        "method": "RLHF",
+        "avg_reward": -0.052622947841882706,
+        "perplexity": 35.16060918232552,
+        "distinct_2": 0.8029448621553885,
+        "distinct_3": 0.9198866022679546
+      },
+      "examples": [
+        "Maybe we couldn't understand the meaning of our love or so, Maybe we couldn't find each other in our world of two and Love itself ceased to be, 'cause it had no sense to glow. Love made sense for both of us, but we didn't let it flow, Though we could let it flow, but we didn't give it a chance, and Maybe we couldn't understand the meaning of our love or so. Maybe the senses of our love were intermingled and we didn't know, But we knew it, when we touched our angry bodies, we knew that Love itself ceased to be, 'cause it had no sense to glow. Then, we letted our love madness be a big bubble growin' to blow, That kind of madness making us be drinkers of our own delusions, and Maybe we couldn't understand the meaning of our love or so. We understood the dyin' meaning of those delusions in our live show. They have been dissolved into sorrow until our separation, and Love itself ceased to be, 'cause it had no sense to glow. Now, when we drive with time machine on the old age o' the snow, 'Tis too late to search each other in our world of two, and Maybe we couldn't understand the meaning of our love or so, Love itself ceased to be, 'cause it had no sense to glow.",
+        "",
+        "To the Almighty Creator we believe with faith To Him we pray to merit us the better fate But if a strong, healthy person such so lazy Relies only from somebody to feed him if hungry To starvation if that person dies, that's total defeat And that's not Almighty Creator's given fate. Copyright Muzahidul Reza | 9 November,2017",
+        "Nude men and women come to see the Eyes of God, and they are baptized. Poem by Marieta Maglas",
+        ""
+      ]
+    },
+    {
+      "config": "PPLM",
+      "metrics": {
+        "method": "PPLM",
+        "avg_reward": -0.05258851870894432,
+        "perplexity": 35.78865271114463,
+        "distinct_2": 0.8010046570038198,
+        "distinct_3": 0.9178723628137002
+      },
+      "examples": [
+        "Maybe we couldn't understand the meaning of our love or so, Maybe we couldn't find each other in our world of two and Love itself ceased to be, 'cause it had no sense to glow. Love made sense for both of us, but we didn't let it flow, Though we could let it flow, but we didn't give it a chance, and Maybe we couldn't understand the meaning of our love or so. Maybe the senses of our love were intermingled and we didn't know, But we knew it, when we touched our angry bodies, we knew that Love itself ceased to be, 'cause it had no sense to glow. Then, we letted our love madness be a big bubble growin' to blow, That kind of madness making us be drinkers of our own delusions, and Maybe we couldn't understand the meaning of our love or so. We understood the dyin' meaning of those delusions in our live show. They have been dissolved into sorrow until our separation, and Love itself ceased to be, 'cause it had no sense to glow. Now, when we drive with time machine on the old age o' the snow, 'Tis too late to search each other in our world of two, and Maybe we couldn't understand the meaning of our love or so, Love itself ceased to be, 'cause it had no sense to glow. The world we see around us is distorted and illusory in the light of day, and Love itself ceased to be, 'cause it had no",
+        "",
+        "To the Almighty Creator we believe with faith To Him we pray to merit us the better fate But if a strong, healthy person such so lazy Relies only from somebody to feed him if hungry To starvation if that person dies, that's total defeat And that's not Almighty Creator's given fate. Copyright Muzahidul Reza |09/02/2017",
+        "Nude men and women come to see the Eyes of God, and they are baptized. Poem by Marieta Maglas",
+        ""
+      ]
+    },
+    {
+      "config": "Hybrid",
+      "metrics": {
+        "method": "Hybrid",
+        "avg_reward": -0.05262435972690582,
+        "perplexity": 36.14142091084198,
+        "distinct_2": 0.8015910647489595,
+        "distinct_3": 0.9194787307305187
+      },
+      "examples": [
+        "Maybe we couldn't understand the meaning of our love or so, Maybe we couldn't find each other in our world of two and Love itself ceased to be, 'cause it had no sense to glow. Love made sense for both of us, but we didn't let it flow, Though we could let it flow, but we didn't give it a chance, and Maybe we couldn't understand the meaning of our love or so. Maybe the senses of our love were intermingled and we didn't know, But we knew it, when we touched our angry bodies, we knew that Love itself ceased to be, 'cause it had no sense to glow. Then, we letted our love madness be a big bubble growin' to blow, That kind of madness making us be drinkers of our own delusions, and Maybe we couldn't understand the meaning of our love or so. We understood the dyin' meaning of those delusions in our live show. They have been dissolved into sorrow until our separation, and Love itself ceased to be, 'cause it had no sense to glow. Now, when we drive with time machine on the old age o' the snow, 'Tis too late to search each other in our world of two, and Maybe we couldn't understand the meaning of our love or so, Love itself ceased to be, 'cause it had no sense to glow. Maybe we couldn't understand the meaning of our love or so, Maybe we couldn't find each other in our world of two, Love itself ceased to",
+        "",
+        "To the Almighty Creator we believe with faith To Him we pray to merit us the better fate But if a strong, healthy person such so lazy Relies only from somebody to feed him if hungry To starvation if that person dies, that's total defeat And that's not Almighty Creator's given fate, if he will Not feed to such poor person, then that's total defeat. Copyright Muzahidul Reza 25 December,2017",
+        "Nude men and women come to see the Eyes of God, and they are baptized. Poem by Marieta Maglas.",
+        ""
+      ]
+    }
+  ]
+}
