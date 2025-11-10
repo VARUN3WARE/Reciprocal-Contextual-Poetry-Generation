@@ -38,6 +38,7 @@ def run():
     parser.add_argument('--out', type=str, default=None, help='Output results file (JSON)')
     parser.add_argument('--device', type=str, default='cuda' if torch.cuda.is_available() else 'cpu', help='Torch device to use')
     parser.add_argument('--model-dir', type=str, default=None, help='Optional path to a local finetuned model directory')
+    parser.add_argument('--hf-model', type=str, default=None, help='Optional Hugging Face model id to load from the Hub (e.g. ashiqabdulkhader/GPT2-Poet)')
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -76,6 +77,18 @@ def run():
             print('Provided --model-dir does not exist, falling back to defaults')
             gpt2 = GPT2LMHeadModel.from_pretrained('gpt2')
             tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+    # If a Hugging Face model id was provided, try to load it from the Hub.
+    elif args.hf_model:
+        print('Loading model from Hugging Face Hub id:', args.hf_model)
+        try:
+            gpt2 = GPT2LMHeadModel.from_pretrained(args.hf_model)
+            tokenizer = GPT2Tokenizer.from_pretrained(args.hf_model)
+        except Exception as e:
+            # If the repo hosts only TF weights, attempt to load TF weights into PyTorch
+            print('Standard PyTorch load failed for', args.hf_model, 'error:', e)
+            print('Attempting to load TF weights into PyTorch (from_tf=True)')
+            gpt2 = GPT2LMHeadModel.from_pretrained(args.hf_model, from_tf=True)
+            tokenizer = GPT2Tokenizer.from_pretrained(args.hf_model)
     elif distil_model_dir.exists():
         print('Found finetuned DistilGPT2 at', distil_model_dir, '- loading')
         gpt2 = GPT2LMHeadModel.from_pretrained(str(distil_model_dir))

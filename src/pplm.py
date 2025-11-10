@@ -50,18 +50,38 @@ def pplm_generate(
     designed for CPU/quick experiments.
     """
     model.eval()
-    input_ids = tokenizer.encode(prompt, return_tensors='pt').to(device)
+    # Truncate prompt to model's max length to avoid index errors on long inputs
+    max_model_len = getattr(tokenizer, 'model_max_length', 1024)
+    input_ids = tokenizer.encode(prompt, return_tensors='pt')
+    if input_ids is None:
+        input_ids = tokenizer.encode('', return_tensors='pt')
+    # If prompt longer than model context, keep only the last `max_model_len-1` tokens
+    if input_ids.size(1) > max_model_len - 1:
+        print(f"[pplm_generate] prompt too long ({input_ids.size(1)} tokens), truncating to last {max_model_len-1} tokens")
+        input_ids = input_ids[:, - (max_model_len - 1) :]
+    input_ids = input_ids.to(device)
     generated = input_ids
     past_key_values = None
 
     for _ in range(max_length):
+        # Ensure the current context doesn't exceed the model's position embeddings
+        context_len = getattr(model.config, 'n_positions', getattr(tokenizer, 'model_max_length', 1024))
+        # reserve one token for next generation
+        max_context = max(1, context_len - 1)
+        if generated.size(1) > max_context:
+            # truncate to last max_context tokens and reset past_key_values so model recomputes
+            generated = generated[:, -max_context:]
+            past_key_values = None
+
         with torch.no_grad():
+            inputs_for_model = generated[:, -1:] if past_key_values else generated
             outputs = model(
-                input_ids=generated[:, -1:] if past_key_values else generated,
+                input_ids=inputs_for_model,
                 past_key_values=past_key_values,
                 use_cache=True,
                 return_dict=True,
             )
+            # get logits for the last token position
             unmodified_logits = outputs.logits[:, -1, :].detach()
             past_key_values = outputs.past_key_values
 

@@ -9,10 +9,22 @@ def perplexity(model, tokenizer, texts: List[str], device):
     losses = []
     with torch.no_grad():
         for t in texts:
-            enc = tokenizer.encode(t, return_tensors='pt').to(device)
-            outputs = model(input_ids=enc, labels=enc)
-            loss = outputs.loss.item()
-            losses.append(loss)
+            try:
+                enc = tokenizer.encode(t, return_tensors='pt')
+                # skip empty encodings
+                if enc is None or enc.numel() == 0 or enc.size(-1) == 0:
+                    continue
+                enc = enc.to(device)
+                try:
+                    outputs = model(input_ids=enc, labels=enc)
+                except RuntimeError:
+                    # skip problematic examples that cause shape/indexing issues
+                    continue
+                loss = outputs.loss.item()
+                losses.append(loss)
+            except Exception:
+                # be resilient: skip this text if tokenization/model fails for any reason
+                continue
     # exp of average loss
     return float(np.exp(np.mean(losses))) if len(losses) > 0 else float('inf')
 

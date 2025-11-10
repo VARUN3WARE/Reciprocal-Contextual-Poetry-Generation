@@ -47,8 +47,14 @@ def aggregate(results_paths, out_dir: Path):
             })
 
     df = pd.DataFrame(records)
-    # Group by config and compute stats
-    agg = df.groupby('config').agg(['mean', 'std', 'count'])
+    # Ensure numeric columns are numeric (robust to string noise in inputs)
+    for col in ['avg_reward', 'perplexity', 'distinct_2', 'distinct_3']:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+
+    # Group by config and compute stats on numeric columns only
+    numeric_cols = ['avg_reward', 'perplexity', 'distinct_2', 'distinct_3']
+    agg = df.groupby('config')[numeric_cols].agg(['mean', 'std', 'count'])
 
     summary = {}
     for cfg in agg.index:
@@ -100,6 +106,7 @@ def main():
     parser.add_argument('--num-prompts', type=str, default='30', help='Comma-separated prompt counts, e.g. 30,60')
     parser.add_argument('--quick', action='store_true', help='Quick mode to speed up runs')
     parser.add_argument('--out-dir', type=str, default='outputs/experiments/batch', help='Output directory for batch artifacts')
+    parser.add_argument('--hf-model', type=str, default=None, help='Optional Hugging Face model id to pass to each run (e.g. ashiqabdulkhader/GPT2-Poet)')
     args = parser.parse_args()
 
     seeds = [int(s) for s in args.seeds.split(',') if s.strip()]
@@ -112,7 +119,17 @@ def main():
         for n in nums:
             out_file = out_dir / f'results_seed{s}_n{n}.json'
             out_file.parent.mkdir(parents=True, exist_ok=True)
-            run_single(s, n, args.quick, out_file)
+            # Pass hf_model through to the single-run script when provided
+            if args.hf_model:
+                cmd = [sys.executable, 'scripts/run_experiments.py', '--seed', str(s), '--num-prompts', str(n), '--out', str(out_file), '--hf-model', args.hf_model]
+                if args.quick:
+                    cmd.append('--quick')
+                print('Running:', ' '.join(cmd))
+                start = time.time()
+                subprocess.run(cmd, check=True)
+                print('Completed in {:.1f}s'.format(time.time() - start))
+            else:
+                run_single(s, n, args.quick, out_file)
             results_paths.append(out_file)
 
     aggregate(results_paths, out_dir)

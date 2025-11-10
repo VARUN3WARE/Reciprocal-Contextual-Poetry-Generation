@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 from typing import List
+import contextlib
 
 
 class RewardModel(nn.Module):
@@ -94,16 +95,55 @@ def finetune_gpt2_supervised(model, tokenizer, texts: List[str], device, epochs:
             input_ids = input_ids.to(device)
             attention_mask = attention_mask.to(device)
 
-            # Use autocast with requested dtype
+            # Use a robust autocast context that handles different PyTorch versions/signatures
             if use_amp:
-                if use_bf16:
-                    with torch.cuda.amp.autocast(device_type='cuda', dtype=torch.bfloat16):
-                        outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
-                        loss = outputs.loss
-                else:
-                    with torch.cuda.amp.autocast():
-                        outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
-                        loss = outputs.loss
+                # Try several autocast call signatures and fall back to cpu/non-amp if necessary
+                autocast_cm = None
+                # Prefer torch.amp.autocast if available
+                amp_mod = getattr(torch, 'amp', None)
+                cuda_amp_mod = getattr(torch, 'cuda', None) and getattr(torch.cuda, 'amp', None)
+
+                tried = False
+                if amp_mod is not None and hasattr(amp_mod, 'autocast'):
+                    try:
+                        if use_bf16:
+                            autocast_cm = amp_mod.autocast(device_type='cuda', dtype=torch.bfloat16)
+                        else:
+                            autocast_cm = amp_mod.autocast()
+                        tried = True
+                    except TypeError:
+                        # signature may not accept device_type; try dtype-only
+                        try:
+                            if use_bf16:
+                                autocast_cm = amp_mod.autocast(dtype=torch.bfloat16)
+                            else:
+                                autocast_cm = amp_mod.autocast()
+                            tried = True
+                        except Exception:
+                            autocast_cm = None
+
+                if autocast_cm is None and cuda_amp_mod is not None and hasattr(cuda_amp_mod, 'autocast'):
+                    try:
+                        # cuda.amp.autocast typically accepts no args or dtype in newer versions
+                        if use_bf16:
+                            autocast_cm = cuda_amp_mod.autocast(dtype=torch.bfloat16)
+                        else:
+                            autocast_cm = cuda_amp_mod.autocast()
+                        tried = True
+                    except TypeError:
+                        try:
+                            autocast_cm = cuda_amp_mod.autocast()
+                            tried = True
+                        except Exception:
+                            autocast_cm = None
+
+                if autocast_cm is None:
+                    # fallback: no autocast available, use nullcontext
+                    autocast_cm = contextlib.nullcontext()
+
+                with autocast_cm:
+                    outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
+                    loss = outputs.loss
             else:
                 outputs = model(input_ids=input_ids, attention_mask=attention_mask, labels=input_ids)
                 loss = outputs.loss
