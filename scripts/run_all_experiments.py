@@ -19,10 +19,7 @@ def run(cmd: list[str]):
     env = dict(os.environ)
     # ensure our repo root is on PYTHONPATH so scripts can import src
     env["PYTHONPATH"] = str(ROOT)
-    try:
-        subprocess.check_call(cmd, env=env)
-    except subprocess.CalledProcessError as e:
-        print(f"Warning: command failed: {e}; continuing to next run.")
+    subprocess.check_call(cmd, env=env)
 
 
 def main():

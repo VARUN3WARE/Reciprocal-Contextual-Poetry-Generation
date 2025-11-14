@@ -32,15 +32,7 @@ def main(argv: List[str] | None = None) -> int:
     device = detect_device()
 
     print(f"Loading model {args.variant} on device {device}...")
-    try:
-        model, tokenizer = load_tokenizer_and_model(variant=args.variant, device=device)
-    except Exception as e:
-        print(f"Warning: failed to load requested variant '{args.variant}': {e}")
-        if args.variant != "gpt2":
-            print("Falling back to baseline 'gpt2' model to continue the experiment.")
-            model, tokenizer = load_tokenizer_and_model(variant="gpt2", device=device)
-        else:
-            raise
+    model, tokenizer = load_tokenizer_and_model(variant=args.variant, device=device)
 
     print(f"Running experiment: variant={args.variant} mode={args.mode} prompt='{args.prompt}'")
     results = run_experiment(model, tokenizer, args.prompt, mode=args.mode, topic=args.topic, max_length=args.max_len, num_return_sequences=args.num)

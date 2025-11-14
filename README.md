@@ -1,3 +1,46 @@
+# Reciprocal Contextual Poetry Generation
+
+This repository contains a minimal, structured implementation of PPLM + a simplified RLHF proxy adapted from the notebooks in this workspace. The goal is to provide a reproducible experiment harness that:
+
+- Implements a simplified PPLM steering using BoW attribute models.
+- Implements a lightweight RLHF proxy: a reward model + small supervised fine-tune on preferred examples.
+- Runs experiments comparing Base, PPLM, RLHF, and Hybrid approaches and computes simple quantitative metrics.
+
+Structure
+
+- `src/` : core modules (pplm, rlhf, generator, eval)
+- `scripts/` : experiment runner
+- `poetry_dataset.txt` : dataset (should be present in repo root)
+- `outputs/experiments/results.json` : saved experiment outputs
+
+Quick start
+
+1. Create a Python environment and install dependencies:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+2. Run the experiment runner (may download models the first time):
+
+```bash
+python scripts/run_experiments.py
+```
+
+Notes
+
+- The RLHF implementation here is a small-scale proxy for demonstration (supervised fine-tuning on high-rated examples). Full RLHF (PPO) would need a larger training loop and compute.
+- PPLM is implemented in a simplified manner for clarity and reproducibility.
+- The scripts are intentionally conservative so they can run on CPU for quick tests. For larger experiments use a GPU.
+
+Next steps
+
+- Add unit tests and CI integration.
+- Add more robust RLHF (PPO via trl) and batched PPLM for speed.
+- Add plotting notebooks to visualize reward evolution and comparisons.
+
 ## Reciprocal Poetry: An AI Co-Creative Writing Partner ✍
 
 ️
@@ -38,34 +81,6 @@ https://colab.research.google.com/drive/1aAb4D4u8u5mkvTkQG_aV_6AMwSvMyoVf#scroll
 ## Link for the Fine-Tuned Model
 
 https://drive.google.com/file/d/1IvTbqQ4dJ4dUDVrFT0A0Y2i1BCnsdGu0/view?usp=drive_link
-
-## Switching between Base and Fine-Tuned Generator
-
-A small helper module was added at `src/model_utils.py` to make it easy to switch which generative model is used across notebooks and scripts.
-
-Usage example (replace existing `from_pretrained('gpt2')` lines in notebooks with this):
-
-```python
-from src.model_utils import load_tokenizer_and_model
-
-# choose variant: 'gpt2' (default) or 'finetuned' (the local model under models/distilgpt2_poetry_small)
-model, tokenizer = load_tokenizer_and_model(variant="finetuned", device="cpu")
-```
-
-You can also set an environment variable to control selection globally:
-
-- MODEL_VARIANT (values: 'gpt2', 'distilgpt2', 'finetuned')
-- MODEL_PATH (a direct path or HF model identifier — this takes priority over MODEL_VARIANT)
-
-Example (bash):
-
-```bash
-export MODEL_VARIANT=finetuned
-# or point to a local path or hub id
-export MODEL_PATH=/absolute/path/to/my/custom-model
-```
-
-This keeps switching concise and contained in one place instead of editing many notebook cells.
 
 ## DATASET (NEW)
 
