@@ -1,0 +1,1 @@
+{"repos": [{"repoId": "gpt2-large", "repoType": "model", "commitHash": "32b71b12589c2f8d625668d2335a01cac3249519", "filePaths": ["config.json", "merges.txt", "vocab.json", "tokenizer.json", "generation_config.json", "model.safetensors", "tokenizer_config.json"]}]}

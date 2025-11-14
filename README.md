@@ -31,14 +31,41 @@ The highest-rated line is selected and added to the poem, becoming part of the c
 
 This feedback (line, rating) is stored. At the end of the session, it's used to update the DistilBERT (Reward Model), which gets better at predicting the user's preferences for the next session.
 
-## Link for the RHLF Model 
-https://colab.research.google.com/drive/1aAb4D4u8u5mkvTkQG_aV_6AMwSvMyoVf#scrollTo=lDVJeRDLeoH_
+## Link for the RHLF Model
 
+https://colab.research.google.com/drive/1aAb4D4u8u5mkvTkQG_aV_6AMwSvMyoVf#scrollTo=lDVJeRDLeoH_
 
 ## Link for the Fine-Tuned Model
 
 https://drive.google.com/file/d/1IvTbqQ4dJ4dUDVrFT0A0Y2i1BCnsdGu0/view?usp=drive_link
 
+## Switching between Base and Fine-Tuned Generator
+
+A small helper module was added at `src/model_utils.py` to make it easy to switch which generative model is used across notebooks and scripts.
+
+Usage example (replace existing `from_pretrained('gpt2')` lines in notebooks with this):
+
+```python
+from src.model_utils import load_tokenizer_and_model
+
+# choose variant: 'gpt2' (default) or 'finetuned' (the local model under models/distilgpt2_poetry_small)
+model, tokenizer = load_tokenizer_and_model(variant="finetuned", device="cpu")
+```
+
+You can also set an environment variable to control selection globally:
+
+- MODEL_VARIANT (values: 'gpt2', 'distilgpt2', 'finetuned')
+- MODEL_PATH (a direct path or HF model identifier — this takes priority over MODEL_VARIANT)
+
+Example (bash):
+
+```bash
+export MODEL_VARIANT=finetuned
+# or point to a local path or hub id
+export MODEL_PATH=/absolute/path/to/my/custom-model
+```
+
+This keeps switching concise and contained in one place instead of editing many notebook cells.
 
 ## DATASET (NEW)
 
