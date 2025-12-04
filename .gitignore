@@ -1,0 +1,28 @@
+
+*.ckpt
+demo_pplm_colab.ipynb - Colab.pdf.venv/
+__huggingface_repos__.json
+.ipynb_checkpoints/
+# Jupyter Notebooks checkpoints
+# Model directories
+models/
+models-gpu/
+# Output directories
+outputs/
+outputs-gpu/
+*.pdf
+poems.jsonl
+poetry_dataset.txt
+poetry-lora-final/
+poetry-lora-model/
+*.pt
+*.pth
+*.pyc
+__pycache__/
+*.pyd
+*.pyo
+# Python-related
+# PyTorch models
+*.safetensors
+.venv/
+venv/
