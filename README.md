@@ -2,6 +2,8 @@
 
 This repository contains a minimal, structured implementation of PPLM + a simplified RLHF proxy adapted from the notebooks in this workspace. The goal is to provide a reproducible experiment harness that:
 
+![alt](iamge.png)
+
 - Implements a simplified PPLM steering using BoW attribute models.
 - Implements a lightweight RLHF proxy: a reward model + small supervised fine-tune on preferred examples.
 - Runs experiments comparing Base, PPLM, RLHF, and Hybrid approaches and computes simple quantitative metrics.
